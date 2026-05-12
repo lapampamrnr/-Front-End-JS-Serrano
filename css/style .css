@@ -1,349 +1,784 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100&display=swap');
-main {
-    
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  height: 4096px;
-  margin: 0 auto;
-  padding-bottom: 700px;
+```css
+/* =========================================================
+   MARCOSMETIC - STYLES.CSS
+   Proyecto Front-End JS | Pre-Entrega Clase 8
+   Autora: Marcela Adriana Serrano
+========================================================= */
+
+/* =========================
+   GOOGLE FONTS
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+/* =========================
+   VARIABLES
+========================= */
+:root{
+    --rosa-principal: #c98b9e;
+    --rosa-secundario: #e9c8d3;
+    --rosa-claro: #f7eef2;
+    --rosa-hover: #b67389;
+    --blanco: #ffffff;
+    --gris: #666;
+    --gris-claro: #f5f5f5;
+    --negro: #1f1f1f;
+    --sombra: 0 10px 30px rgba(0,0,0,0.08);
+    --sombra-hover: 0 15px 40px rgba(0,0,0,0.15);
+    --border-radius: 20px;
+    --transition: all .4s ease;
 }
 
-.sticky { 
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 140px;
-   background-color:#fbbc02;
-border-top:4px solid blue; /*tamaño, estilo y color del borde*/
-margin-top:0px;
-margin-left: 0px;
-max-width: 100%;
-margin-right: 0px;
-
+/* =========================
+   RESET
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-.kiki{
-  position: absolute;
-     top: 10px;
-     margin-left: 20px; 
-    }   
-.titulo{
-  font-family: 'Anek Malayalam', sans-serif;
-}
-/*buscador*/
-.flexsearch--wrapper {
-height: auto;
-width: auto;
-max-width: 30%;
-overflow: hidden;
-background: transparent;
-  position: absolute;
-  margin-left: 90px;
-border-top:4px;
-top:10px;}	
-.flexsearch--form {
-overflow: hidden;
-position: relative;}	
-.flexsearch--input-wrapper {
-padding: 0 66px 0 0; 
-overflow: hidden;}
-.flexsearch--input {
-width: 1000px}
-.flexsearch {
-padding: 0 60px 0 250px; /* Padding for other horizontal elements */}
-.flexsearch--input {
--webkit-box-sizing: content-box;
--moz-box-sizing: content-box;
-box-sizing: content-box;
- height: 25px;
-padding: 0 76px 0 10px;
-border-color: rgb(66, 66, 63);
-border-style: solid;
-border-width: 0px;
-margin-top:0px;
-color: rgb(112, 32, 32);
-font-family: 'Helvetica', sans-serif;
-font-size: 17px;
--webkit-appearance: none;
--moz-appearance: none;
-  width:4000px;}
-.flexsearch--submit {
-position: absolute;
-right: 0;
-top: 0;
-display: block;
-width: 70px;
-height: 30px;
-padding: 0;
-border: none;
-margin-right: 5px; /* border-width */
-background: transparent;
-color: rgb(123, 123, 150);
-font-family: 'Helvetica', sans-serif;
-font-size: 23px;
-line-height: 30px;
-margin-bottom: 50px;}
-.flexsearch--input:focus {
-outline: none;
-border-color: rgb(51, 51, 51);}
-.flexsearch--input:focus.flexsearch--submit {
- color: #333; }
-.flexsearch--submit:hover {
-color: #333;
-cursor: pointer;}
-::-webkit-input-placeholder {
-color: #888;  }
-input:-moz-placeholder {
-color: #888}
-
-
-/*icons*/
-.loli2{
-  margin-left: 950px; 
-color:black;
-position: absolute;
-    top: 9px;
-    width:24px;
-     height:20px;
+html{
+    overflow-x: hidden;
 }
 
-.loli3{
-  margin-left: 1084px; 
-color:black;
-position: absolute;
-top: 91px;
-width:26px;
-height:20px;
-}
-.loli4{
-  margin-left: 1189px; 
-color:black;
-position: absolute;
-top: 90px;
-width:30px;
-height:26px;
-}
-/*letra acomp*/
-#lolim{
-  top:80px;
-  margin-left: 20px; 
-  color:black;
-  font-family: 'Helvetica', sans-serif;
-font-size: 13px;
-position:relative}
-.loli5{
-  margin-left: 980px; 
-color:black;
-font-size: 14px;
-position: absolute;
-    top: 13px;
-    font-family: 'Helvetica', sans-serif;
-}
-.loli6{
-  margin-left: 987px; 
-color:black;
-font-size: 14px;
-position: absolute;
-    top: 95px;
-    font-family: 'Helvetica', sans-serif;
-}
-.loli7{
-  margin-left: 1140px; 
-color:black;
-font-size: 14px;
-position: absolute;
-    top: 95px;
-    font-family: 'Helvetica', sans-serif;
+body{
+    font-family: 'Poppins', sans-serif;
+    background: var(--rosa-claro);
+    color: var(--negro);
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/*banner*/
-.loli8{
-
-top: 0;
-width: 100%;
-margin-top:0px;
-margin-left: 0px;
-max-width: 100%;
-margin-right: 0px;
-}
-/*parte de la transition de nuestras ofertas*/
-.ofertas {
-  display: flex;
-  width: 90%;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: space-between;  font-size: 12px;
-
-  color: #ccc;
+/* =========================
+   SCROLLBAR
+========================= */
+::-webkit-scrollbar{
+    width: 10px;
 }
 
-.ofertas .card {
-  /* width: 25%; */
-  flex: 1;
-  height: 350px;
-  margin: 10px;
-  padding: 3px;
-  border-radius: 10px;  font-size: 12px;
-
-  border: 1px solid #ccc;
-       background-color:White ;
-
+::-webkit-scrollbar-thumb{
+    background: var(--rosa-principal);
+    border-radius: 10px;
 }
 
-.card .detalle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8px;  
-  font-size: 12px;
-  margin-top: -41px;
-
-  font-family: 'Helvetica', sans-serif;
-    color: rgb(0, 0, 0);
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
 }
 
-.detalle .btn {
-  width: 100px;
-  height: 30px;
-  background-color: #3483fa;
-  border-radius: 5px;
-  border: none;
-  font-size: 12px;
-  color: #fff;
-  cursor: pointer;
-  transition: .4s ease-in;
-  font-family: 'Helvetica', sans-serif;
- margin-top: -38px;
-}
-/*transmision de comprar*/
-.detalle .btn:hover {
-  width: 150px;
-   height: 30px;
-   background-color: green;
-   border-radius: 5px;
-   border: none;
-   font-size: 16px;
-   color: #fff;
-   cursor: pointer;
-   transition: .4s ease-in;
-}
-figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-
+/* =========================
+   NAVBAR
+========================= */
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
+.navbar{
+    width: 90%;
+    margin: auto;
+    min-height: 90px;
 
-/*color borde*/      
-
-.transicion {
-   background-color: white;
-  transition-property: background-colo;
-  transition-duration: .4s;
-  transition-timing-function: ease-in
-}
-.transicion:hover {
- background-color:grey; 
-}
-/*parte de la transmision de productos descatacados*/
-.titulos{
-  font-family: 'Anek Malayalam', sans-serif;  
-}
-  
-  .ofertass {
     display: flex;
-    width: 60%;
-    margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Helvetica', sans-serif;
-  
-  }
-  .ofertass .cards {
-    /* width: 25%; */
-    flex: 1;
-    height: 350px;
-    margin: 10px;
-    padding: 3px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-         background-color:White ;
-         font-family: 'Helvetica', sans-serif;
-  
-  }
+}
 
-  
-  .cards .detalles {
+.logo{
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--rosa-principal);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo span{
+    color: var(--negro);
+}
+
+.nav-links{
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: var(--negro);
+    font-weight: 500;
+    transition: var(--transition);
     position: relative;
-    top: -70%;
-    margin-left: 55px;
-  }
+}
 
-
-/*buscador del fotter*/
-.flexsearchs--wrapper {
-  height: auto;
-  width: auto;
-  max-width: 40%;
-  overflow: hidden;
-  background: transparent;
+.nav-links a::after{
+    content: "";
     position: absolute;
-    margin-left: -260px;
-  border-top:4px;
-  top:60px;}	
-  .flexsearchs--form {
-  overflow: hidden;
-  position: relative;}	
-  .flexsearchs--input-wrapper {
-  padding: 0 66px 0 0; 
-  overflow: hidden;}
-  .flexsearchs--input {
-  width: 1000px}
-  .flexsearchs {
-  padding: 0 60px 0 250px; /* Padding for other horizontal elements */}
-  .flexsearchs--input {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-   height: 25px;
-  padding: 0 76px 0 10px;
-  border-color: rgb(10, 10, 10);
-  border-style: solid;
-  border-width: 0px;
-  margin-top:0px;
-  color: rgb(112, 32, 32);
-  font-family: 'Helvetica', sans-serif;
-  font-size: 17px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-    width:4000px;}
-  .flexsearchs--submit {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  width: 80px;
-  height: 40px;
-  padding: 0;
-  border: none;
-  margin-right: -25px; /* border-width */
-  background: transparent;
-  color: rgb(81, 81, 210);
-  font-family: 'Helvetica', sans-serif;
-  font-size: 23px;
-  line-height: 30px;
-  margin-bottom: 990px;}
-  .flexsearchs--input:focus {
-  outline: none;
-  border-color: rgb(51, 51, 51);}
-  .flexsearchs--input:focus.flexsearchs--submit {
-   color: #333; }
-  .flexsearchs--submit:hover {
-  color: #333;
-  cursor: pointer;}
-  ::-webkit-input-placeholder {
-  color: #888;  }
-  input:-moz-placeholder {
-  color: #888}
-  
+    width: 0%;
+    height: 2px;
+    background: var(--rosa-principal);
+    left: 0;
+    bottom: -6px;
+    transition: .4s;
+}
+
+.nav-links a:hover::after{
+    width: 100%;
+}
+
+.nav-links a:hover{
+    color: var(--rosa-principal);
+}
+
+/* =========================
+   SEARCH
+========================= */
+.search-box{
+    display: flex;
+    align-items: center;
+    background: var(--blanco);
+    padding: 8px 15px;
+    border-radius: 40px;
+    box-shadow: var(--sombra);
+}
+
+.search-box input{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 220px;
+    font-size: 0.95rem;
+    color: var(--gris);
+}
+
+.search-box i{
+    color: var(--rosa-principal);
+    cursor: pointer;
+}
+
+/* =========================
+   ICONOS
+========================= */
+.nav-icons{
+    display: flex;
+    gap: 20px;
+}
+
+.nav-icons a{
+    color: var(--negro);
+    font-size: 1.3rem;
+    transition: var(--transition);
+}
+
+.nav-icons a:hover{
+    color: var(--rosa-principal);
+    transform: translateY(-3px);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    min-height: 95vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.45),
+    rgba(0,0,0,0.45)),
+    url("../img/banner.jpg");
+
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+}
+
+.hero-content{
+    max-width: 800px;
+    color: white;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero-content h1{
+    font-size: 4.5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-content p{
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+}
+
+.hero-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-principal,
+.btn-secundario{
+    padding: 15px 35px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-principal{
+    background: var(--rosa-principal);
+    color: white;
+}
+
+.btn-principal:hover{
+    background: var(--rosa-hover);
+    transform: translateY(-5px);
+}
+
+.btn-secundario{
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-secundario:hover{
+    background: white;
+    color: var(--negro);
+}
+
+/* =========================
+   TITULOS GENERALES
+========================= */
+.section-title{
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2{
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--rosa-principal);
+    margin-bottom: 10px;
+}
+
+.section-title p{
+    color: var(--gris);
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+.productos{
+    width: 90%;
+    margin: auto;
+    padding: 100px 0;
+}
+
+.productos-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+}
+
+.product-card{
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+
+    width: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+
+    transition: var(--transition);
+    position: relative;
+}
+
+.product-card:hover{
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-hover);
+}
+
+.product-card img{
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.product-card:hover img{
+    transform: scale(1.05);
+}
+
+.product-info{
+    padding: 25px;
+}
+
+.product-info h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-info p{
+    color: var(--gris);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.price{
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--rosa-principal);
+}
+
+.product-buttons{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.buy-btn,
+.details-btn{
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.buy-btn{
+    background: var(--rosa-principal);
+    color: white;
+}
+
+.buy-btn:hover{
+    background: var(--rosa-hover);
+}
+
+.details-btn{
+    border: 2px solid var(--rosa-principal);
+    color: var(--rosa-principal);
+}
+
+.details-btn:hover{
+    background: var(--rosa-principal);
+    color: white;
+}
+
+/* =========================
+   CARRUSEL
+========================= */
+.carrusel-section{
+    padding: 100px 0;
+    background: linear-gradient(to right, #fff, #f8e8ee);
+}
+
+#owl-demo .item{
+    margin: 15px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+}
+
+#owl-demo .item img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: .5s;
+}
+
+#owl-demo .item:hover img{
+    transform: scale(1.05);
+}
+
+/* =========================
+   BENEFICIOS
+========================= */
+.beneficios{
+    width: 90%;
+    margin: auto;
+    padding: 100px 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 30px;
+}
+
+.beneficio-card{
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: var(--sombra);
+    transition: var(--transition);
+}
+
+.beneficio-card:hover{
+    transform: translateY(-10px);
+}
+
+.beneficio-card i{
+    font-size: 3rem;
+    color: var(--rosa-principal);
+    margin-bottom: 20px;
+}
+
+/* =========================
+   RESEÑAS (GRID)
+========================= */
+.reseñas{
+    width: 90%;
+    margin: auto;
+    padding: 100px 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+    gap: 35px;
+}
+
+.card-reseña{
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+
+    transition: var(--transition);
+    position: relative;
+}
+
+.card-reseña:hover{
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-hover);
+}
+
+.card-reseña:nth-child(2){
+    background: linear-gradient(135deg,#fff,#fce8ee);
+}
+
+.card-reseña h4{
+    margin-top: 15px;
+    color: var(--rosa-principal);
+}
+
+.card-reseña p{
+    color: var(--gris);
+}
+
+.stars{
+    color: gold;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   VIDEO / MULTIMEDIA
+========================= */
+.multimedia{
+    padding: 100px 5%;
+}
+
+.video-container{
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: var(--sombra-hover);
+}
+
+.video-container iframe{
+    width: 100%;
+    min-height: 500px;
+    border: none;
+}
+
+/* =========================
+   CONTACTO
+========================= */
+.contacto{
+    padding: 100px 5%;
+    background: linear-gradient(to right, #fff, #f8e8ee);
+}
+
+.contact-container{
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: var(--sombra);
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    outline: none;
+
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.contact-form textarea{
+    resize: none;
+    min-height: 180px;
+}
+
+/* PSEUDO CLASES OBLIGATORIAS */
+.contact-form input:focus,
+.contact-form textarea:focus{
+    border-color: var(--rosa-principal);
+    box-shadow: 0 0 10px rgba(201,139,158,0.3);
+    background: #fffafc;
+}
+
+.contact-form button{
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    background: var(--rosa-principal);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.contact-form button:hover{
+    background: var(--rosa-hover);
+    transform: translateY(-5px);
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+.newsletter{
+    width: 90%;
+    margin: auto;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.newsletter-box{
+    background: linear-gradient(135deg,#dba6b7,#c98b9e);
+    color: white;
+    padding: 60px;
+    border-radius: 30px;
+}
+
+.newsletter-form{
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.newsletter-form input{
+    width: 350px;
+    padding: 16px;
+    border: none;
+    border-radius: 40px;
+}
+
+.newsletter-form button{
+    padding: 16px 30px;
+    border: none;
+    border-radius: 40px;
+    background: white;
+    color: var(--rosa-principal);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover{
+    transform: scale(1.05);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer{
+    background: #fff;
+    padding: 70px 5% 20px;
+    margin-top: 50px;
+}
+
+.footer-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 40px;
+}
+
+.footer-box h3{
+    margin-bottom: 20px;
+    color: var(--rosa-principal);
+}
+
+.footer-box a{
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--gris);
+    transition: var(--transition);
+}
+
+.footer-box a:hover{
+    color: var(--rosa-principal);
+    transform: translateX(5px);
+}
+
+.social-icons{
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a{
+    width: 45px;
+    height: 45px;
+    background: var(--rosa-principal);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover{
+    transform: translateY(-5px);
+    background: var(--rosa-hover);
+}
+
+.footer-bottom{
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: var(--gris);
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 992px){
+
+    .navbar{
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .hero-content h1{
+        font-size: 3.2rem;
+    }
+
+    .search-box{
+        width: 100%;
+    }
+
+    .search-box input{
+        width: 100%;
+    }
+}
+
+@media(max-width: 768px){
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero{
+        background-attachment: scroll;
+    }
+
+    .hero-content h1{
+        font-size: 2.5rem;
+    }
+
+    .hero-content p{
+        font-size: 1rem;
+    }
+
+    .section-title h2{
+        font-size: 2.2rem;
+    }
+
+    .contact-container{
+        padding: 30px;
+    }
+
+    .newsletter-box{
+        padding: 40px 20px;
+    }
+
+    /* OBLIGATORIO CONSIGNA */
+    .reseñas{
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 480px){
+
+    .logo{
+        font-size: 1.5rem;
+    }
+
+    .hero-content h1{
+        font-size: 2rem;
+    }
+
+    .btn-principal,
+    .btn-secundario{
+        width: 100%;
+    }
+
+    .product-card{
+        width: 100%;
+    }
+
+    .video-container iframe{
+        min-height: 250px;
+    }
+}
+```
