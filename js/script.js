@@ -1,85 +1,298 @@
-/*
+// ===========================
+// PRELOADER
+// ===========================
 
-Bootstrap Version 
-Build: 1.0
-*/
+$(window).on("load", function () {
 
-$(window).load(function() { 
-	//Preloader 
-	$('#status').delay(300).fadeOut(); 
-	$('#preloader').delay(300).fadeOut('slow');
-	$('body').delay(550).css({'overflow':'visible'});
-})
+    $("#status").fadeOut();
 
-$(document).ready(function() {
-		//animated logo
-		$(".navbar-brand").hover(function () {
-			$(this).toggleClass("animated shake");
-		});
-		
-		//animated scroll_arrow
-		$(".img_scroll").hover(function () {
-			$(this).toggleClass("animated infinite bounce");
-		});
-		
-		//Wow Animation DISABLE FOR ANIMATION MOBILE/TABLET
-		wow = new WOW(
-		{
-			mobile: false
-		});
-		wow.init();
-		
-		//MagnificPopup
-		$('.image-link').magnificPopup({type:'image'});
+    $("#preloader").delay(300).fadeOut("slow");
 
-
-		// OwlCarousel N1
-		$("#owl-demo").owlCarousel({
-			autoPlay: 3000,
-			items : 3,
-			itemsDesktop : [1199,3],
-			itemsDesktopSmall : [979,3]
-		});
-
-		// OwlCarousel N2
-		$("#owl-demo-1").owlCarousel({
-			  navigation : false, // Show next and prev buttons
-			  slideSpeed : 300,
-			  paginationSpeed : 400,
-			  singleItem:true
-		});
-
-		//SmothScroll
-		$('a[href*=#]').click(function() {
-			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-			&& location.hostname == this.hostname) {
-					var $target = $(this.hash);
-					$target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
-					if ($target.length) {
-							var targetOffset = $target.offset().top;
-							$('html,body').animate({scrollTop: targetOffset}, 600);
-							return false;
-					}
-			}
-		});
-		
-		//Subscribe
-		new UIMorphingButton( document.querySelector( '.morph-button' ) );
-		// for demo purposes only
-		[].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) { 
-			bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
-		} );
+    $("body").css({
+        overflow: "visible"
+    });
 
 });
- //MOODAAAL/
- $('#myModal').modal(options)
- 
- $('#exampleModal').on('show.bs.modal', function (event) {
-	var button = $(event.relatedTarget) // Button that triggered the modal
-	var recipient = button.data('whatever') // Extract info from data-* attributes
-	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	var modal = $(this)
-	modal.find('.modal-title').text('New message to ' + recipient)
-	modal.find('.modal-body input').val(recipient)
-  })
+
+// ===========================
+// DOCUMENT READY
+// ===========================
+
+$(document).ready(function () {
+
+    // ==========================
+    // WOW ANIMATION
+    // ==========================
+
+    new WOW({
+        mobile: false
+    }).init();
+
+    // ==========================
+    // IMAGE POPUP
+    // ==========================
+
+    $(".image-link").magnificPopup({
+        type: "image",
+        gallery: {
+            enabled: true
+        }
+    });
+
+    // ==========================
+    // PRODUCT CAROUSEL
+    // ==========================
+
+    $("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        items: 4,
+        itemsDesktop: [1199, 3],
+        itemsDesktopSmall: [979, 2],
+        itemsTablet: [768, 2],
+        itemsMobile: [479, 1],
+        pagination: true
+    });
+
+    // ==========================
+    // TESTIMONIAL CAROUSEL
+    // ==========================
+
+    $("#owl-demo-1").owlCarousel({
+        singleItem: true,
+        autoPlay: 4000,
+        slideSpeed: 500,
+        paginationSpeed: 500
+    });
+
+    // ==========================
+    // SMOOTH SCROLL
+    // ==========================
+
+    $('a[href*="#"]').on("click", function (e) {
+
+        const target = $(this.hash);
+
+        if (target.length) {
+
+            e.preventDefault();
+
+            $("html, body").animate({
+                scrollTop: target.offset().top
+            }, 700);
+
+        }
+
+    });
+
+    // ==========================
+    // NAVBAR EFFECT
+    // ==========================
+
+    $(window).scroll(function () {
+
+        if ($(window).scrollTop() > 50) {
+
+            $(".navbar").addClass("navbar-scroll");
+
+        } else {
+
+            $(".navbar").removeClass("navbar-scroll");
+
+        }
+
+    });
+
+    // ==========================
+    // PRODUCT HOVER EFFECT
+    // ==========================
+
+    $(".product-card").hover(
+
+        function () {
+
+            $(this).css({
+                transform: "scale(1.04)",
+                transition: "0.3s",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+            });
+
+        },
+
+        function () {
+
+            $(this).css({
+                transform: "scale(1)",
+                boxShadow: "none"
+            });
+
+        }
+
+    );
+
+    // ==========================
+    // IMAGE ZOOM EFFECT
+    // ==========================
+
+    $(".product-card img").hover(
+
+        function () {
+
+            $(this).css({
+                transform: "scale(1.12)",
+                transition: "0.4s"
+            });
+
+        },
+
+        function () {
+
+            $(this).css({
+                transform: "scale(1)"
+            });
+
+        }
+
+    );
+
+    // ==========================
+    // SEARCH PRODUCTS
+    // ==========================
+
+    $("#searchInput").on("keyup", function () {
+
+        let value = $(this).val().toLowerCase();
+
+        $(".product-card").filter(function () {
+
+            $(this).toggle(
+
+                $(this).text().toLowerCase().indexOf(value) > -1
+
+            );
+
+        });
+
+    });
+
+    // ==========================
+    // FAVORITES BUTTON
+    // ==========================
+
+    $(".favorite-btn").click(function () {
+
+        $(this).toggleClass("active-favorite");
+
+        if ($(this).hasClass("active-favorite")) {
+
+            $(this).html("❤️");
+
+        } else {
+
+            $(this).html("🤍");
+
+        }
+
+    });
+
+    // ==========================
+    // ADD TO CART
+    // ==========================
+
+    let cartCount = 0;
+
+    $(".add-cart").click(function () {
+
+        cartCount++;
+
+        $("#cart-count").text(cartCount);
+
+        $(".cart-message")
+            .fadeIn()
+            .delay(1000)
+            .fadeOut();
+
+    });
+
+    // ==========================
+    // CONTACT FORM
+    // ==========================
+
+    $("#contactForm").submit(function (e) {
+
+        e.preventDefault();
+
+        let name = $("#name").val();
+        let email = $("#email").val();
+        let message = $("#message").val();
+
+        if (name === "" || email === "" || message === "") {
+
+            alert("Por favor complete todos los campos.");
+
+        } else {
+
+            alert("Mensaje enviado correctamente ✨");
+
+            $("#contactForm")[0].reset();
+
+        }
+
+    });
+
+    // ==========================
+    // BACK TO TOP BUTTON
+    // ==========================
+
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() > 300) {
+
+            $("#backToTop").fadeIn();
+
+        } else {
+
+            $("#backToTop").fadeOut();
+
+        }
+
+    });
+
+    $("#backToTop").click(function () {
+
+        $("html, body").animate({
+            scrollTop: 0
+        }, 700);
+
+    });
+
+    // ==========================
+    // DARK MODE
+    // ==========================
+
+    $("#darkModeToggle").click(function () {
+
+        $("body").toggleClass("dark-mode");
+
+    });
+
+    // ==========================
+    // MODAL
+    // ==========================
+
+    $("#exampleModal").on("show.bs.modal", function (event) {
+
+        const button = $(event.relatedTarget);
+
+        const recipient = button.data("whatever");
+
+        const modal = $(this);
+
+        modal.find(".modal-title").text(
+            "Mensaje para " + recipient
+        );
+
+        modal.find(".modal-body input").val(recipient);
+
+    });
+
+});
