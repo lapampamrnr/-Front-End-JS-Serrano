@@ -296,3 +296,67 @@ $(document).ready(function () {
     });
 
 });
+/* ========================================= */
+/* LOGIN VALIDACION */
+/* ========================================= */
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        if (email === "" || password === "") {
+
+            alert("Completa todos los campos");
+
+        } else {
+
+            alert("Inicio de sesión exitoso ✨");
+
+            window.location.href = "index.html";
+
+        }
+
+    });
+
+}
+
+/* ========================================= */
+/* REGISTER VALIDACION */
+/* ========================================= */
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+
+    registerForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+
+            alert("Las contraseñas no coinciden");
+
+            return;
+
+        }
+
+        alert("Cuenta creada correctamente 💖");
+
+        window.location.href = "login.html";
+
+    });
+
+}
