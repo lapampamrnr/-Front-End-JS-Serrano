@@ -360,3 +360,48 @@ if (registerForm) {
     });
 
 }
+const form = document.getElementById("registerForm");
+
+form.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    const mensaje = document.getElementById("mensajeRegistro");
+
+    if (password !== confirmPassword) {
+
+        mensaje.innerHTML = `
+            <div class="alert alert-danger">
+                Las contraseñas no coinciden
+            </div>
+        `;
+
+        return;
+    }
+
+    // GUARDAR USUARIO
+
+    const usuario = {
+
+        nombre,
+        email,
+        password
+
+    };
+
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+    mensaje.innerHTML = `
+        <div class="alert alert-success">
+            Registro exitoso ✨
+        </div>
+    `;
+
+    form.reset();
+
+});
