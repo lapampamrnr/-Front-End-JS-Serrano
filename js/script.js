@@ -405,3 +405,34 @@ form.addEventListener("submit", function (e) {
     form.reset();
 
 });
+/* ========================================= */
+/* LOGIN MODAL */
+/* ========================================= */
+
+const loginForm = document.getElementById("loginForm");
+
+if(loginForm){
+
+    loginForm.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail").value;
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        if(email === "" || password === ""){
+
+            alert("Completa todos los campos");
+
+            return;
+
+        }
+
+        alert("✨ Bienvenida a MARCOSMETIC");
+
+    });
+
+}
