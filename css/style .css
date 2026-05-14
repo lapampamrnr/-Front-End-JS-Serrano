@@ -1249,4 +1249,108 @@ body{
     transform: translateY(-2px);
 
 }
+   /* ========================================= */
+/* MODAL LOGIN */
+/* ========================================= */
+
+.modern-modal {
+
+    border-radius: 30px;
+    border: none;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+
+}
+
+.modal-header {
+
+    padding: 30px 30px 10px;
+
+}
+
+.modal-title {
+
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+
+}
+
+.modal-text {
+
+    color: #666;
+    margin-bottom: 30px;
+
+}
+
+.modern-input {
+
+    border-radius: 15px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+
+}
+
+.modern-input:focus {
+
+    border-color: #111;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+
+.modal-login-btn {
+
+    background: #111;
+    color: white;
+    border-radius: 15px;
+    padding: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+
+}
+
+.modal-login-btn:hover {
+
+    background: #ff4fa0;
+    color: white;
+    transform: translateY(-2px);
+
+}
+
+.btn-login {
+
+    border: none;
+    background: #111;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+
+}
+
+.btn-login:hover {
+
+    background: #ff4fa0;
+    transform: translateY(-2px);
+
+}
+
+.forgot-link {
+
+    text-decoration: none;
+    color: #ff4fa0;
+    font-size: 14px;
+
+}
+
+.register-text a {
+
+    color: #ff4fa0;
+    font-weight: 600;
+    text-decoration: none;
+
+}
 ```
