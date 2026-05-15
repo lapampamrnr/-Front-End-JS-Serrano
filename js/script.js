@@ -1,96 +1,80 @@
-// ===========================
-// PRELOADER
-// ===========================
-
-$(window).on("load", function () {
-
-    $("#status").fadeOut();
-
-    $("#preloader").delay(300).fadeOut("slow");
-
-    $("body").css({
-        overflow: "visible"
-    });
-
-});
-
-// ===========================
-// DOCUMENT READY
-// ===========================
+/* =========================================================
+   MARCOSMETIC - SCRIPT.JS
+   Autora: Marcela Adriana Serrano
+========================================================= */
 
 $(document).ready(function () {
 
-    // ==========================
-    // WOW ANIMATION
-    // ==========================
+    /* =========================================
+       PRELOADER
+    ========================================= */
 
-    new WOW({
-        mobile: false
-    }).init();
+    $(window).on("load", function () {
 
-    // ==========================
-    // IMAGE POPUP
-    // ==========================
+        $("#status").fadeOut();
 
-    $(".image-link").magnificPopup({
-        type: "image",
-        gallery: {
-            enabled: true
-        }
-    });
+        $("#preloader").delay(400).fadeOut("slow");
 
-    // ==========================
-    // PRODUCT CAROUSEL
-    // ==========================
-
-    $("#owl-demo").owlCarousel({
-        autoPlay: 3000,
-        items: 4,
-        itemsDesktop: [1199, 3],
-        itemsDesktopSmall: [979, 2],
-        itemsTablet: [768, 2],
-        itemsMobile: [479, 1],
-        pagination: true
-    });
-
-    // ==========================
-    // TESTIMONIAL CAROUSEL
-    // ==========================
-
-    $("#owl-demo-1").owlCarousel({
-        singleItem: true,
-        autoPlay: 4000,
-        slideSpeed: 500,
-        paginationSpeed: 500
-    });
-
-    // ==========================
-    // SMOOTH SCROLL
-    // ==========================
-
-    $('a[href*="#"]').on("click", function (e) {
-
-        const target = $(this.hash);
-
-        if (target.length) {
-
-            e.preventDefault();
-
-            $("html, body").animate({
-                scrollTop: target.offset().top
-            }, 700);
-
-        }
+        $("body").css("overflow", "visible");
 
     });
 
-    // ==========================
-    // NAVBAR EFFECT
-    // ==========================
+    /* =========================================
+       WOW ANIMATIONS
+    ========================================= */
+
+    if (typeof WOW === "function") {
+
+        new WOW({
+            mobile: false
+        }).init();
+
+    }
+
+    /* =========================================
+       MAGNIFIC POPUP
+    ========================================= */
+
+    if ($(".image-link").length) {
+
+        $(".image-link").magnificPopup({
+            type: "image",
+            gallery: {
+                enabled: true
+            }
+        });
+
+    }
+
+    /* =========================================
+       OWL CAROUSEL
+    ========================================= */
+
+    if ($("#owl-demo").length) {
+
+        $("#owl-demo").owlCarousel({
+
+            items: 3,
+            navigation: false,
+            pagination: true,
+            autoPlay: true,
+
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 2],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1]
+
+        });
+
+    }
+
+    /* =========================================
+       NAVBAR SCROLL
+    ========================================= */
 
     $(window).scroll(function () {
 
-        if ($(window).scrollTop() > 50) {
+        if ($(this).scrollTop() > 50) {
 
             $(".navbar").addClass("navbar-scroll");
 
@@ -102,67 +86,89 @@ $(document).ready(function () {
 
     });
 
-    // ==========================
-    // PRODUCT HOVER EFFECT
-    // ==========================
+    /* =========================================
+       SMOOTH SCROLL
+    ========================================= */
 
-    $(".product-card").hover(
+    $('a[href^="#"]').on("click", function (e) {
 
-        function () {
+        const target = $(this.getAttribute("href"));
 
-            $(this).css({
-                transform: "scale(1.04)",
-                transition: "0.3s",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
-            });
+        if (target.length) {
 
-        },
+            e.preventDefault();
 
-        function () {
+            $("html, body").stop().animate({
 
-            $(this).css({
-                transform: "scale(1)",
-                boxShadow: "none"
-            });
+                scrollTop: target.offset().top - 70
+
+            }, 800);
 
         }
 
-    );
+    });
 
-    // ==========================
-    // IMAGE ZOOM EFFECT
-    // ==========================
+    /* =========================================
+       FAVORITOS
+    ========================================= */
 
-    $(".product-card img").hover(
+    $(".favorite-btn").click(function () {
 
-        function () {
+        $(this).toggleClass("active");
 
-            $(this).css({
-                transform: "scale(1.12)",
-                transition: "0.4s"
-            });
+        const icon = $(this).find("i");
 
-        },
+        if ($(this).hasClass("active")) {
 
-        function () {
+            icon.removeClass("bx-heart");
+            icon.addClass("bxs-heart");
 
-            $(this).css({
-                transform: "scale(1)"
-            });
+        } else {
+
+            icon.removeClass("bxs-heart");
+            icon.addClass("bx-heart");
 
         }
 
-    );
+    });
 
-    // ==========================
-    // SEARCH PRODUCTS
-    // ==========================
+    /* =========================================
+       CARRITO
+    ========================================= */
 
-    $("#searchInput").on("keyup", function () {
+    let cartCount = 3;
+
+    $(".btn-dark").click(function (e) {
+
+        if ($(this).text().includes("Comprar")) {
+
+            e.preventDefault();
+
+            cartCount++;
+
+            $(".cart-badge").text(cartCount);
+
+            $(".cart-badge").addClass("bounce");
+
+            setTimeout(() => {
+
+                $(".cart-badge").removeClass("bounce");
+
+            }, 500);
+
+        }
+
+    });
+
+    /* =========================================
+       BUSCADOR PRODUCTOS
+    ========================================= */
+
+    $("#buscador").on("keyup", function () {
 
         let value = $(this).val().toLowerCase();
 
-        $(".product-card").filter(function () {
+        $(".producto-card").filter(function () {
 
             $(this).toggle(
 
@@ -174,264 +180,158 @@ $(document).ready(function () {
 
     });
 
-    // ==========================
-    // FAVORITES BUTTON
-    // ==========================
+    /* =========================================
+       FILTROS PRODUCTOS
+    ========================================= */
 
-    $(".favorite-btn").click(function () {
+    $(".filtros-productos button").click(function () {
 
-        $(this).toggleClass("active-favorite");
+        $(".filtros-productos button").removeClass("active");
 
-        if ($(this).hasClass("active-favorite")) {
+        $(this).addClass("active");
 
-            $(this).html("❤️");
+        const filtro = $(this).text().toLowerCase();
 
-        } else {
+        $(".producto-card").show();
 
-            $(this).html("🤍");
+        if (filtro !== "todos") {
 
-        }
+            $(".producto-card").filter(function () {
 
-    });
+                $(this).toggle(
 
-    // ==========================
-    // ADD TO CART
-    // ==========================
+                    $(this).text().toLowerCase().indexOf(filtro) > -1
 
-    let cartCount = 0;
+                );
 
-    $(".add-cart").click(function () {
-
-        cartCount++;
-
-        $("#cart-count").text(cartCount);
-
-        $(".cart-message")
-            .fadeIn()
-            .delay(1000)
-            .fadeOut();
-
-    });
-
-    // ==========================
-    // CONTACT FORM
-    // ==========================
-
-    $("#contactForm").submit(function (e) {
-
-        e.preventDefault();
-
-        let name = $("#name").val();
-        let email = $("#email").val();
-        let message = $("#message").val();
-
-        if (name === "" || email === "" || message === "") {
-
-            alert("Por favor complete todos los campos.");
-
-        } else {
-
-            alert("Mensaje enviado correctamente ✨");
-
-            $("#contactForm")[0].reset();
+            });
 
         }
 
     });
 
-    // ==========================
-    // BACK TO TOP BUTTON
-    // ==========================
+    /* =========================================
+       SCROLL TOP BUTTON
+    ========================================= */
 
     $(window).scroll(function () {
 
         if ($(this).scrollTop() > 300) {
 
-            $("#backToTop").fadeIn();
+            $("#scrollTopBtn").fadeIn();
 
         } else {
 
-            $("#backToTop").fadeOut();
+            $("#scrollTopBtn").fadeOut();
 
         }
 
     });
 
-    $("#backToTop").click(function () {
+    $("#scrollTopBtn").click(function () {
 
         $("html, body").animate({
+
             scrollTop: 0
-        }, 700);
+
+        }, 800);
 
     });
 
-    // ==========================
-    // DARK MODE
-    // ==========================
+    /* =========================================
+       NEWSLETTER
+    ========================================= */
 
-    $("#darkModeToggle").click(function () {
-
-        $("body").toggleClass("dark-mode");
-
-    });
-
-    // ==========================
-    // MODAL
-    // ==========================
-
-    $("#exampleModal").on("show.bs.modal", function (event) {
-
-        const button = $(event.relatedTarget);
-
-        const recipient = button.data("whatever");
-
-        const modal = $(this);
-
-        modal.find(".modal-title").text(
-            "Mensaje para " + recipient
-        );
-
-        modal.find(".modal-body input").val(recipient);
-
-    });
-
-});
-/* ========================================= */
-/* LOGIN VALIDACION */
-/* ========================================= */
-
-const loginForm = document.getElementById("loginForm");
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", function (e) {
+    $(".newsletter-form").submit(function (e) {
 
         e.preventDefault();
 
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+        const email = $(this).find("input").val();
 
-        if (email === "" || password === "") {
+        if (email === "") {
 
-            alert("Completa todos los campos");
-
-        } else {
-
-            alert("Inicio de sesión exitoso ✨");
-
-            window.location.href = "index.html";
-
-        }
-
-    });
-
-}
-
-/* ========================================= */
-/* REGISTER VALIDACION */
-/* ========================================= */
-
-const registerForm = document.getElementById("registerForm");
-
-if (registerForm) {
-
-    registerForm.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
-        const password =
-            document.getElementById("password").value;
-
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
-
-        if (password !== confirmPassword) {
-
-            alert("Las contraseñas no coinciden");
+            alert("Ingresá tu email");
 
             return;
 
         }
 
-        alert("Cuenta creada correctamente 💖");
+        alert("💌 Gracias por suscribirte");
 
-        window.location.href = "login.html";
+        this.reset();
 
     });
 
-}
-const form = document.getElementById("registerForm");
+    /* =========================================
+       CONTACTO
+    ========================================= */
 
-form.addEventListener("submit", function (e) {
+    $(".formulario-contacto").submit(function (e) {
 
-    e.preventDefault();
+        const nombre = $(this).find('input[name="nombre"]').val();
 
-    const nombre = document.getElementById("nombre").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+        const email = $(this).find('input[name="email"]').val();
 
-    const mensaje = document.getElementById("mensajeRegistro");
+        const mensaje = $(this).find("textarea").val();
 
-    if (password !== confirmPassword) {
+        if (nombre === "" || email === "" || mensaje === "") {
 
-        mensaje.innerHTML = `
-            <div class="alert alert-danger">
-                Las contraseñas no coinciden
-            </div>
-        `;
+            e.preventDefault();
 
-        return;
-    }
+            alert("Completá todos los campos");
 
-    // GUARDAR USUARIO
+        }
 
-    const usuario = {
+    });
 
-        nombre,
-        email,
-        password
+    /* =========================================
+       LOGIN MODAL
+    ========================================= */
 
-    };
-
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-
-    mensaje.innerHTML = `
-        <div class="alert alert-success">
-            Registro exitoso ✨
-        </div>
-    `;
-
-    form.reset();
-
-});
-/* ========================================= */
-/* LOGIN MODAL */
-/* ========================================= */
-
-const loginForm = document.getElementById("loginForm");
-
-if(loginForm){
-
-    loginForm.addEventListener("submit", function(e){
+    $("#loginModal form").submit(function (e) {
 
         e.preventDefault();
 
-        const email =
-            document.getElementById("loginEmail").value;
+        const email = $(this).find('input[type="email"]').val();
 
-        const password =
-            document.getElementById("loginPassword").value;
+        const password = $(this).find('input[type="password"]').val();
 
-        if(email === "" || password === ""){
+        if (email === "" || password === "") {
 
-            alert("Completa todos los campos");
+            alert("Completá todos los campos");
 
             return;
 
         }
 
         alert("✨ Bienvenida a MARCOSMETIC");
+
+        $("#loginModal").modal("hide");
+
+    });
+
+});
+  /* =========================================
+   BANNER SLIDER
+========================================= */
+
+if ($("#banner-slider").length) {
+
+    $("#banner-slider").owlCarousel({
+
+        singleItem: true,
+
+        autoPlay: 3500,
+
+        navigation: false,
+
+        pagination: true,
+
+        stopOnHover: true,
+
+        slideSpeed: 800,
+
+        paginationSpeed: 1000
 
     });
 
